@@ -105,3 +105,16 @@ a {
     color-scheme: dark;
   }
 }
+
+
+table{
+  background-color: whitesmoke;
+  color: black;
+
+  border-spacing: 2px;
+
+}
+td{
+  border: solid 1px black;
+  padding: 3px;
+}
