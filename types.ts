@@ -1,3 +1,26 @@
+import { URLSearchParams } from "url";
+
+export type RequestUrl = {
+  nextUrl: {
+    pathname:string,
+    searchParams:QuerySearchParams
+  }
+}
+
+export type QuerySearchParams = {
+  get: URLSearchParams,
+  start?:string|number,
+  stop?:string|number,
+}
+
+export type OrganizedData = {
+  duplicati_id: string;
+  times: {
+    _time: string;
+    items: any[];
+  }[];
+}
+
 export type Duplicati = {
   Data: {
     SizeOfAddedFiles:number,

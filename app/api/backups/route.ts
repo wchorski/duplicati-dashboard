@@ -46,6 +46,7 @@ export async function POST(request: Request) {
   console.log(data.Duration);
   
 
+  // ? here you can add new fields to be put into the database
   let point = new Point(`duplicati_backup_logs`)
     .tag(`duplicati_id`, name)
     .stringField('duration', data.Duration)
