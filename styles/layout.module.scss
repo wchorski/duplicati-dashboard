@@ -1,0 +1,10 @@
+.wide{
+
+  --w-sitemax: 900px;
+
+}
+
+.wrapper {
+  max-width: var(--w-sitemax);
+  margin-inline: auto;
+}

@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server'
 import { queryDB, writeDB } from '@/lib/db_connect';
-import { Duplicati, QuerySearchParams, RequestUrl } from '@/types';
+import { Duplicati, InfluxPoint, QuerySearchParams, RequestUrl } from '@/types';
 import { HttpError, Point } from '@influxdata/influxdb-client';
 import { envars } from '@/lib/envars';
-const jsonFilePath =  + '/logs/data.json'; 
 
 type Context = {
   params: {
@@ -13,9 +12,9 @@ type Context = {
  
 export async function GET(request: RequestUrl, context:Context) {
   
-  console.log('==== GET Backup by Id ====');
   const { id } = context.params
   const { searchParams, pathname } = request.nextUrl
+  console.log(`==== GET LAST Backup by Id: ${id} ====`);
 
   // todo figure out how to type .get() functions
   // @ts-ignore
@@ -33,37 +32,14 @@ export async function GET(request: RequestUrl, context:Context) {
               // @ts-ignore
               : searchParams.get('stop')
 
-  // @ts-ignore
-  const isLast = searchParams.get('last') === 'undefined' ||
-              // @ts-ignore
-              searchParams.get('last') === null
-              ? '' 
-              // @ts-ignore
-              : '|> last()'
-
-  // @ts-ignore
-  const isFirst = searchParams.get('first') === 'undefined' ||
-              // @ts-ignore
-              searchParams.get('first') === null
-              ? '' 
-              // @ts-ignore
-              : '|> first()'
-  // // @ts-ignore
-  // const stop = searchParams.get('stop') === 'undefined'|null ? 'now()' : searchParams.get('stop')  
-  // const start = '-12h'
-  // const stop = 'now()'
 
   let fluxQuery = `
     from(bucket: "${envars.INFLUX_BUCKET}")
       |> range(start: ${start}, stop: ${stop} )
       |> filter(fn: (r) => r._measurement == "duplicati_backup_logs")
       |> filter(fn: (r) => r.duplicati_id == "${id}")
-      ${isLast}
-      ${isFirst}
+      |> last()
   `
-
-  // console.log({fluxQuery});
-  
 
   const myQuery = async () => {
 
@@ -82,8 +58,10 @@ export async function GET(request: RequestUrl, context:Context) {
     
     const result = points.length > 0 ? points : [{message: 'no_data_found'}]
     // console.log(result);
+    const lastPoint = formatOnePoint(result)
+  
     
-    return NextResponse.json(result)
+    return NextResponse.json(lastPoint)
     
   } catch (error:any) {
     console.log({error});
@@ -92,4 +70,55 @@ export async function GET(request: RequestUrl, context:Context) {
   }
  
   // return NextResponse.json(points)
+}
+
+interface PrettyPoint {
+  duplicati_id: string;
+  _time: string;
+  _field: string;
+  _value: any;
+}
+
+const fieldMap: Record<string, string> = {
+  bytes_downloaded: "bytes_downloaded",
+  bytes_uploaded: "bytes_uploaded",
+  duration: "duration",
+  files_downloaded: "files_downloaded",
+  files_uploaded: "files_uploaded",
+  status: "status",
+};
+
+
+function formatOnePoint(points:InfluxPoint[]){
+
+
+  const uniqueFields = points.reduce((uniqueFieldsArray:any, item:any) => {
+    const field = item["_field"];
+    if (!uniqueFieldsArray.includes(field)) {
+      uniqueFieldsArray.push(field);
+    }
+    return uniqueFieldsArray;
+  }, []);
+
+  const prettyPoint = points.reduce((result:any, point) => {
+    result.duplicati_id = point.duplicati_id;
+    result.time = point._time;
+  
+    const field = point._field;
+    uniqueFields.map((uField:string) => {
+      if(field === uField){
+        result[uField] = point._value
+      }
+    })
+  
+    return result;
+  }, {
+    duplicati_id: "",
+    time: "",
+  });
+
+  // console.log(JSON.stringify(prettyPoint, null, 2));
+
+  return prettyPoint
+  
 }

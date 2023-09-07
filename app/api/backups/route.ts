@@ -1,19 +1,37 @@
 import { NextResponse } from 'next/server'
 import * as fs from 'fs'
 import { queryDB, writeDB } from '@/lib/db_connect';
-import { Duplicati } from '@/types';
+import { Duplicati, RequestUrl } from '@/types';
 import { HttpError, Point } from '@influxdata/influxdb-client';
 import { envars } from '@/lib/envars';
 const jsonFilePath =  + '/logs/data.json'; 
  
-export async function GET() {
-  console.log('==== GET Backup ====');
+export async function GET(request: RequestUrl, ) {
+  
+  console.log('==== GET Backups ====');
+  // const { id } = context.params
+  const { searchParams, pathname } = request.nextUrl
+
+  // todo figure out how to type .get() functions
+  // @ts-ignore
+  const start = searchParams.get('start') === 'undefined' ||
+                // @ts-ignore
+                searchParams.get('start') === null
+                  ? '-40d' 
+                // @ts-ignore
+                  : searchParams.get('start')
+  // @ts-ignore
+  const stop = searchParams.get('stop') === 'undefined' ||
+              // @ts-ignore
+              searchParams.get('stop') === null
+              ? 'now()' 
+              // @ts-ignore
+              : searchParams.get('stop')
 
   let fluxQuery = `
     from(bucket: "${envars.INFLUX_BUCKET}")
-      |> range(start: -90m)
+      |> range(start: ${start}, stop: ${stop} )
       |> filter(fn: (r) => r._measurement == "duplicati_backup_logs")
-      |> yield(name: "last")
   `
 
   const myQuery = async () => {
@@ -43,9 +61,9 @@ export async function POST(request: Request) {
   const name = res.Extra['backup-name']
   const data = res.Data
   const stats = data.BackendStatistics
-  console.log(data.Duration);
+  // console.log(data.Duration);
   
-
+  // todo make adding variables accessable through frontend. prob would need another db like sqlite
   // ? here you can add new fields to be put into the database
   let point = new Point(`duplicati_backup_logs`)
     .tag(`duplicati_id`, name)
@@ -77,38 +95,38 @@ export async function POST(request: Request) {
     if (e instanceof HttpError && e.statusCode === 401) {
       console.log('backup log create error')
     }
-    console.log('\nFinished ERROR')
+    console.log('\n API Backups POST ERROR')
   }
   
 }
 
-function writeJsonFile(filePath: string, jsonData: any): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const jsonString = JSON.stringify(jsonData, null, 2); // Pretty-print with 2 spaces
-    fs.writeFile(filePath, jsonString, 'utf-8', (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        console.log(`JSON data written successfully to ${filePath}`);
-        resolve();
-      }
-    });
-  });
-}
+// function writeJsonFile(filePath: string, jsonData: any): Promise<void> {
+//   return new Promise((resolve, reject) => {
+//     const jsonString = JSON.stringify(jsonData, null, 2); // Pretty-print with 2 spaces
+//     fs.writeFile(filePath, jsonString, 'utf-8', (err) => {
+//       if (err) {
+//         reject(err);
+//       } else {
+//         console.log(`JSON data written successfully to ${filePath}`);
+//         resolve();
+//       }
+//     });
+//   });
+// }
 
-function readJsonFile(filePath: string): Promise<any> {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf-8', (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        try {
-          const jsonData = JSON.parse(data);
-          resolve(jsonData);
-        } catch (parseError) {
-          reject(parseError);
-        }
-      }
-    });
-  });
-}
+// function readJsonFile(filePath: string): Promise<any> {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(filePath, 'utf-8', (err, data) => {
+//       if (err) {
+//         reject(err);
+//       } else {
+//         try {
+//           const jsonData = JSON.parse(data);
+//           resolve(jsonData);
+//         } catch (parseError) {
+//           reject(parseError);
+//         }
+//       }
+//     });
+//   });
+// }

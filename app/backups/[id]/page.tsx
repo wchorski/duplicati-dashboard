@@ -1,6 +1,7 @@
-import { datePretty } from "@/lib/date"
+import { datePretty } from "@/lib/dateFormatter"
 import { envars } from "@/lib/envars"
 import { OrganizedData, QuerySearchParams } from "@/types"
+import stylesTable from "@styles/table.module.scss";
 
 type Props = {
   params: {
@@ -35,7 +36,7 @@ export default async function BackupById({
     <div>
       <h1> Backup Log: {params.id}</h1>
 
-      <table>
+      <table className={stylesTable.rwdTable}>
         <caption> Duplicati ID: {dataById.duplicati_id} </caption>
         <thead>
           <tr>

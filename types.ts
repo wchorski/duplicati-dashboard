@@ -11,6 +11,8 @@ export type QuerySearchParams = {
   get: URLSearchParams,
   start?:string|number,
   stop?:string|number,
+  first?:boolean,
+  last?:boolean,
 }
 
 export type OrganizedData = {
@@ -50,4 +52,16 @@ export type Duplicati = {
     OperationName:string,
     "backup-name":string,
   }
+}
+
+export type InfluxPoint = {
+  result: string,
+  table: number,
+  _start: string,
+  _stop:string, 
+  _time: string,
+  _value: string,
+  _field: string|number,
+  _measurement: string,
+  duplicati_id: string,
 }

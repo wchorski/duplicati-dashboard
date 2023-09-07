@@ -1,12 +1,29 @@
-import { datePretty } from "@/lib/date";
+import { datePretty } from "@/lib/dateFormatter";
 import { envars } from "@/lib/envars";
-import { OrganizedData } from "@/types";
+import { labelPretty } from "@/lib/labelFormatter";
+import { OrganizedData, QuerySearchParams } from "@/types";
+import stylesTable from "@styles/table.module.scss";
 
-export default async function BackupsPage() {
+type Props = {
+  searchParams:QuerySearchParams,
+}
 
 
-  const data = await getData()
-  console.log(data[0])  
+export default async function BackupsPage({
+  searchParams
+}:Props) {
+
+
+  const data = await getData(searchParams?.start, searchParams?.stop)
+  console.log(JSON.stringify(data, null, 2))  
+
+  const uniqueFields = data[0]?.times[0].items.reduce((uniqueFieldsArray:any, item:any) => {
+    const field = item["_field"];
+    if (!uniqueFieldsArray.includes(field)) {
+      uniqueFieldsArray.push(field);
+    }
+    return uniqueFieldsArray;
+  }, []);
 
   return (
     <div>
@@ -14,30 +31,30 @@ export default async function BackupsPage() {
 
       {data.map((entry) => (
         <div key={entry.duplicati_id}>
-          {entry.times.map((timeEntry) => (
-            <div key={timeEntry._time}>
-              <h3>Time: { datePretty(timeEntry._time) }</h3>
-              <table>
-                <caption> Duplicati ID: {entry.duplicati_id} </caption>
-                <thead>
-                  <tr>
-                    <th> Time Stamp </th>
-                    {timeEntry.items.map((item) => (
-                      <th key={item._field}> {item._field} </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td> {datePretty(timeEntry._time) } </td>
-                    {timeEntry.items.map((item, i) => (
-                      <td key={i}>{item._value}</td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ))}
+         
+          <table className={stylesTable.rwdTable} >
+            <caption> {entry.duplicati_id} </caption>
+            <thead>
+              <tr>
+                  <th> Time Stamp </th>
+                {uniqueFields.map((field:string) => (
+                  <th key={field}> {labelPretty(field)} </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {entry.times.map((timeEntry) => (
+                <tr key={timeEntry._time}>
+                    <td data-th="_time"> {datePretty(timeEntry._time) } </td>
+                  {timeEntry.items.map((item, i) => (
+                    <td data-th={labelPretty(item._field)} key={i}>{item._value}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          
+          
         </div>
       ))}
 
@@ -46,8 +63,8 @@ export default async function BackupsPage() {
   )
 }
 
-async function getData() {
-  const res = await fetch(envars.FRONTEND_URL + '/api/backups')
+async function getData(start?:string|number, stop?:string|number) {
+  const res = await fetch(envars.FRONTEND_URL + `/api/backups?start=${start}&stop=${stop}`)
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
   
@@ -90,3 +107,5 @@ async function getData() {
   return organizedArrays
 
 }
+
+

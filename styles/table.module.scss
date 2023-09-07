@@ -1,0 +1,90 @@
+// https://codepen.io/geoffyuen/pen/DZxEKy
+
+$breakpoint-alpha: 480px; // adjust to your needs
+
+.rwdTable {
+
+  --c-head: rgba(0, 110, 255, 0.534);
+
+  margin: 1em 0;
+  min-width: 300px; // adjust to your needs
+  width: 100%;
+
+  caption{
+    text-align: left;
+    font-size: 1.4rem;
+  }
+
+  thead{
+    background-color: var(--c-head);
+  }
+
+  thead th {
+    padding: 0.7rem;
+  }
+  
+  tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 2rem 0;
+  }
+  
+  th {
+    display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!   
+  }
+  
+  td {
+    display: block; 
+    color: var(--c-txt);
+    padding: 1rem;
+    
+    // &:first-child {
+    //   padding-top: .5em;
+    // }
+    // &:last-child {
+    //   padding-bottom: .5em;
+    // }
+
+    &:before {
+      background-color: var(--c-head);
+      margin-right: 1rem;
+      content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+      font-weight: bold;
+
+      // optional stuff to make it look nicer
+      width: 6.5em; // magic number :( adjust according to your own content
+      display: inline-block;
+      
+      @media (min-width: $breakpoint-alpha) {
+        display: none;
+      }
+    }
+  }
+  
+  th, td {
+    text-align: left;
+    
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
+      
+      // &:first-child {
+      //   padding-left: .5rem;
+      // }
+      
+      // &:last-child {
+      //   padding-right: .5rem;
+      // }
+    }
+
+  }
+
+  tr:nth-child(even){
+
+    background-color: rgba(123, 123, 123, 0.409);
+    
+  }
+  
+  
+}
+

@@ -1,0 +1,225 @@
+[
+  {
+    "duplicati_id": "backup1",
+    "times": [
+      {
+        "_time": "2023-09-07T18:31:51.56708875Z",
+        "items": [
+          {
+            "result": "last",
+            "table": 0,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:51.56708875Z",
+            "_value": 4066,
+            "_field": "bytes_downloaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup1"
+          },
+          {
+            "result": "last",
+            "table": 1,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:51.56708875Z",
+            "_value": 0,
+            "_field": "bytes_uploaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup1"
+          },
+          {
+            "result": "last",
+            "table": 2,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:51.56708875Z",
+            "_value": "00:00:00.1111680",
+            "_field": "duration",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup1"
+          },
+          {
+            "result": "last",
+            "table": 3,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:51.56708875Z",
+            "_value": 3,
+            "_field": "files_downloaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup1"
+          },
+          {
+            "result": "last",
+            "table": 4,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:51.56708875Z",
+            "_value": 0,
+            "_field": "files_uploaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup1"
+          },
+          {
+            "result": "last",
+            "table": 5,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:51.56708875Z",
+            "_value": "Success",
+            "_field": "status",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "duplicati_id": "backup2",
+    "times": [
+      {
+        "_time": "2023-09-07T18:31:49.203347833Z",
+        "items": [
+          {
+            "result": "last",
+            "table": 6,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:49.203347833Z",
+            "_value": 1698,
+            "_field": "bytes_downloaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 7,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:49.203347833Z",
+            "_value": 0,
+            "_field": "bytes_uploaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 8,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:49.203347833Z",
+            "_value": "00:00:00.1448310",
+            "_field": "duration",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 9,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:49.203347833Z",
+            "_value": 3,
+            "_field": "files_downloaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 10,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:49.203347833Z",
+            "_value": 0,
+            "_field": "files_uploaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 11,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:49.203347833Z",
+            "_value": "Success",
+            "_field": "status",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          }
+        ]
+      },
+      {
+        "_time": "2023-09-07T18:31:55.873863417Z",
+        "items": [
+          {
+            "result": "last",
+            "table": 6,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:55.873863417Z",
+            "_value": 1698,
+            "_field": "bytes_downloaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 7,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:55.873863417Z",
+            "_value": 0,
+            "_field": "bytes_uploaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 8,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:55.873863417Z",
+            "_value": "00:00:00.0988420",
+            "_field": "duration",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 9,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:55.873863417Z",
+            "_value": 3,
+            "_field": "files_downloaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 10,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:55.873863417Z",
+            "_value": 0,
+            "_field": "files_uploaded",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          },
+          {
+            "result": "last",
+            "table": 11,
+            "_start": "2023-09-07T17:31:58.162001709Z",
+            "_stop": "2023-09-07T18:31:58.162001709Z",
+            "_time": "2023-09-07T18:31:55.873863417Z",
+            "_value": "Success",
+            "_field": "status",
+            "_measurement": "duplicati_backup_logs",
+            "duplicati_id": "backup2"
+          }
+        ]
+      }
+    ]
+  }
+]
