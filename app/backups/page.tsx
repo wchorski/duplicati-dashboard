@@ -1,8 +1,12 @@
+import { ErrorFromDB } from "@/components/ErrorFromDB";
+import { FilterForm } from "@/components/FilterForm";
+import { TableLogs } from "@/components/TableLogs";
 import { datePretty } from "@/lib/dateFormatter";
 import { envars } from "@/lib/envars";
 import { labelPretty } from "@/lib/labelFormatter";
 import { OrganizedData, QuerySearchParams } from "@/types";
 import stylesTable from "@styles/table.module.scss";
+import Link from "next/link";
 
 type Props = {
   searchParams:QuerySearchParams,
@@ -25,37 +29,16 @@ export default async function BackupsPage({
     return uniqueFieldsArray;
   }, []);
 
+  if(data.statusCode === 400) return <ErrorFromDB code={data.code} message={data.message}/>
+
   return (
     <div>
       <h1> Backup Logs </h1>
 
-      {data.map((entry) => (
-        <div key={entry.duplicati_id}>
-         
-          <table className={stylesTable.rwdTable} >
-            <caption> {entry.duplicati_id} </caption>
-            <thead>
-              <tr>
-                  <th> Time Stamp </th>
-                {uniqueFields.map((field:string) => (
-                  <th key={field}> {labelPretty(field)} </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {entry.times.map((timeEntry) => (
-                <tr key={timeEntry._time}>
-                    <td data-th="_time"> {datePretty(timeEntry._time) } </td>
-                  {timeEntry.items.map((item, i) => (
-                    <td data-th={labelPretty(item._field)} key={i}>{item._value}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          
-          
-        </div>
+      <FilterForm />
+
+      {data?.map((entry:any) => (
+        <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
       ))}
 
       {/* <p> {JSON.stringify(data)}</p> */}
@@ -76,7 +59,10 @@ async function getData(start?:string|number, stop?:string|number) {
   
   const data = await res.json()
 
-  const result:  Record<string, Record<string, any[]>> = data.reduce((acc:any, item:any) => {
+  if(data.statusCode === 400) return data
+  
+
+  const result:  Record<string, Record<string, any[]>> = data?.reduce((acc:any, item:any) => {
     const duplicatiId = item.duplicati_id;
     const time = item._time;
   

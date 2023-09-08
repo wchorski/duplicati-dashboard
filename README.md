@@ -40,3 +40,7 @@ breaking down the url above
   - **first** => same as *last* but returns the first point of recoreded data within the range
 
 > [!note] make sure relative dates have a negative i.e. `-5h` as your are looking back in time. Positive time values will cause errors
+
+
+#Todo
+- [ ] create dynamic nav based on unique `duplicati_id`s from database

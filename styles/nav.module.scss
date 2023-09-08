@@ -1,0 +1,56 @@
+.nav :global{
+
+  position: sticky;
+  top: 0;
+
+  div.siteWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li{
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      padding: 1rem;
+      display: inline-block;
+      transition-property: color, background;
+      transition-duration: .2s;
+      transition-timing-function: linear;
+      display: grid;
+      place-items: center;
+      flex-grow: 1;
+
+      &:hover, &:focus{
+        background-color: var(--c-secondary);
+        color: var(--c-txt-rev);
+      }
+
+      &:active{
+        background-color: var(--c-accent);
+      }
+    }
+  }
+  
+  ul.main {
+    background-color: rgb(56, 63, 80);
+    display: flex;
+    max-width: fit-content;
+    border-radius: 0 0 var(--br-dull) var(--br-dull);
+  }
+
+  ul.utility{
+    margin-left: auto;
+
+    svg {
+      font-size: 2rem;
+    }
+  }
+}

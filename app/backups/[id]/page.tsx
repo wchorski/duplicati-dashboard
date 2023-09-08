@@ -1,3 +1,5 @@
+import { FilterForm } from "@/components/FilterForm";
+import { TableLogs } from "@/components/TableLogs";
 import { datePretty } from "@/lib/dateFormatter"
 import { envars } from "@/lib/envars"
 import { OrganizedData, QuerySearchParams } from "@/types"
@@ -34,29 +36,13 @@ export default async function BackupById({
   return (
  
     <div>
-      <h1> Backup Log: {params.id}</h1>
+      <h1> Backup Log </h1>
 
-      <table className={stylesTable.rwdTable}>
-        <caption> Duplicati ID: {dataById.duplicati_id} </caption>
-        <thead>
-          <tr>
-            <th> Time Stamp </th>
-            {uniqueFields.map((field:string) => (
-              <th key={field}> {field.replace('_uploaded', ' ⬆️').replace('_downloaded', ' ⬇️')} </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {dataById.times.map((timeEntry, i) => (
-          <tr key={i}>
-              <td> {datePretty(timeEntry._time) } </td>
-            {timeEntry.items.map((item, i) => (
-              <td key={i}>{item._value}</td>
-            ))}
-          </tr>
-          ))}
-        </tbody>
-      </table>
+      <FilterForm />
+
+      {data?.map((entry:any) => (
+        <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
+      ))}
 
 
       {/* <p> {JSON.stringify(data)}</p> */}

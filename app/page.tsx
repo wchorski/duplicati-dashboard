@@ -1,28 +1,15 @@
 import Image from 'next/image'
 import styles from '@/styles/page.module.scss'
 import { SiGithub } from "react-icons/si";
+import { FaMagnifyingGlassChart } from "react-icons/fa6";
+import { MdMonitorHeart } from "react-icons/md";
 
 export default function Home() {
   return (
     <main className={styles.main}>
 
-      <div className={styles.description}>
-        <p>
-          navigation
-        </p>
-        <div>
-          <a
-            href="https://github.com/wchorski/duplicati-dashboard"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <SiGithub />
-          </a>
-        </div>
-      </div>
-
       <div className={styles.center}>
-        <h2> Duplicati-Dashboard 📊 </h2>
+        <h2 className='siteTitle'> Duplicati-Dashboard <MdMonitorHeart /> </h2>
         <p> Monitor and query all your duplicati clients in one location </p>
       </div>
 

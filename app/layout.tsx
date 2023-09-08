@@ -2,6 +2,7 @@ import './globals.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import layoutStyles from '@styles/layout.module.scss'
+import { Nav } from '@/components/Nav'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={[inter.className, layoutStyles.wide].join(' ')}>
-        <div className={layoutStyles.wrapper}>
+
+        <Nav />
+
+        <main className={[layoutStyles.wrapper, 'siteWrapper'].join(' ')}>
           {children}
-        </div>
+        </main>
+        
       </body>
     </html>
   )

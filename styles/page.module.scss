@@ -77,13 +77,17 @@
   max-width: 30ch;
 }
 
-.center {
+.center :global{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: 4rem 0;
+
+  .siteTitle{
+    font-size: 4rem;
+  }
 }
 
 .center::before {

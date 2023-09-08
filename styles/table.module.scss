@@ -2,11 +2,18 @@
 
 $breakpoint-alpha: 480px; // adjust to your needs
 
+.header{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
 .rwdTable {
 
   --c-head: rgba(0, 110, 255, 0.534);
 
-  margin: 1em 0;
+  margin: 1em 0 3em 0;
   min-width: 300px; // adjust to your needs
   width: 100%;
 
@@ -81,7 +88,7 @@ $breakpoint-alpha: 480px; // adjust to your needs
 
   tr:nth-child(even){
 
-    background-color: rgba(123, 123, 123, 0.409);
+    background-color: rgba(123, 123, 123, 0.236);
     
   }
   

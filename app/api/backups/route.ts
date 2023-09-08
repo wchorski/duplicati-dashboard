@@ -46,10 +46,15 @@ export async function GET(request: RequestUrl, ) {
     return table
   }
 
-  const points = await myQuery()
-  // console.log({newArray});
- 
-  return NextResponse.json(points)
+  try {
+    const points = await myQuery()
+    return NextResponse.json(points)
+    
+  } catch (error) {
+    console.log(error)
+    return NextResponse.json(error)
+  }
+
 }
 
 
