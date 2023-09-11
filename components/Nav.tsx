@@ -10,8 +10,8 @@ export function Nav() {
         <ul className='main'>
           <li> <Link href={`/`}> Home </Link> </li>
           <li> <Link href={`/backups`}> Logs </Link> </li>
-          <li> <Link href={`https://github.com/wchorski/duplicati-dashboard`}> API </Link> </li>
-          <li> <Link href={`/`}> Settings </Link> </li>
+          {/* <li> <Link href={`https://github.com/wchorski/duplicati-dashboard`}> API </Link> </li> */}
+          {/* <li> <Link href={`/`}> Settings </Link> </li> */}
         </ul>
 
         <ul className='links utility'>

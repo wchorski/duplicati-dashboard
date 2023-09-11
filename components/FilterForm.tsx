@@ -3,7 +3,9 @@ import styles from '@styles/form.module.scss'
 import { useRouter } from "next/navigation";
 import { useState } from 'react';
 
-const baseUrl = `/backups`
+type Props = {
+  baseUrl:string,
+}
 
 type Values = {
   // start?: number,
@@ -14,7 +16,7 @@ type Values = {
   startUnit:'m'|'h'|'d'|'m'|''|string,
 }
 
-export function FilterForm() {
+export function FilterForm({baseUrl = `/backups`}:Props) {
 
   const router = useRouter()
 
@@ -63,11 +65,11 @@ export function FilterForm() {
           </label>
 
           <select name="startUnit" id="" onChange={handleOnChange}>
-            <option value=""> -- choose unit -- </option>
+            <option value=""> -- unit -- </option>
             <option value="m"> Minutes </option>
             <option value="h"> Hours </option>
             <option value="d"> Days </option>
-            <option value="m"> Months </option>
+            {/* <option value="m"> Months </option> */}
           </select>
         </div>
 
@@ -78,11 +80,11 @@ export function FilterForm() {
           </label>
 
           <select name="stopUnit" id="" onChange={handleOnChange}>
-            <option value=""> -- choose unit -- </option>
+            <option value=""> -- unit -- </option>
             <option value="m"> Minutes </option>
             <option value="h"> Hours </option>
             <option value="d"> Days </option>
-            <option value="m"> Months </option>
+            {/* <option value="m"> Months </option> */}
           </select>
         </div>
 

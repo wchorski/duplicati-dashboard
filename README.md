@@ -1,16 +1,16 @@
 # duplicati-dashboard
 A NodeJS based server that collects JSON data from Duplicati backup logs
 
-## Tech
+## 📦 Tech
 - Frontend: NextJS
 - API: NextJS
 - Database: InfluxDB
 
-> [!warning] Backups sharing the same name will cause issues. The backup's name must be > unique accross all Duplicati instances, it will be used as an ID for logging. MUST BE URL FRIENDLY
+> [!warning] Backups sharing the same name will cause issues. The backup's name must be unique across all Duplicati instances, it will be used as an ID for logging. MUST BE URL FRIENDLY
 > example: "Laptop--Home_Folder_Backup", "Desktop--Home_Folder_Backup" is a good naming convention. 
 
 ## Usecase
-Initally this was just some middle ware that serves as an endpoint
+Initally this was just some middle ware that serves as an endpoint for JSON friendly monitoring apps, but I also built a simple UI so it could be used as a standalone app.
 
 ## Duplicati Setup
 you can either add these settings for the globally or per backup in the *Advanced options*
@@ -19,12 +19,13 @@ you can either add these settings for the globally or per backup in the *Advance
 
 ## API
 
+Here is a breakdown of what endpoints and search parameters that can be passed through.
+
 ### Query Single Backup Stats
 
-http://APPSDOMAIN/backups/BACKUP_ID?start=-5h&first=true
+http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 
-breaking down the url above
-- BACKUP_ID => the id (or name) of the backup saved
+- `BACKUP_ID` => the id (or name) of the backup saved
 - stuff after the "?" search query sets range of time of pulled data
   - **start** => how far back to you want to start pulling data i.e. 
     - `-40d` 40 days ago [the default]
@@ -41,6 +42,30 @@ breaking down the url above
 
 > [!note] make sure relative dates have a negative i.e. `-5h` as your are looking back in time. Positive time values will cause errors
 
+## ⚙️ Development
+1. `git clone https://github.com/wchorski/duplicati-dashboard.git && cd duplicati-dashboard`
+2. `cp .env.template .env.local`
+3. set up InfluxDB instance
+3. `yarn install`
+3. `yarn dev`
+
+## 🏭 Production
+1. `git clone https://github.com/wchorski/duplicati-dashboard.git && cd duplicati-dashboard`
+2. `cp .env.template .env`
+3. `docker compose up -d`
+4. sign in to InfluxDB admin panel
+  1. get InfluxDB API Key
+5. `docker compose down`
+6. edit `.env` with API key
+7. `docker compose up -d`
+
+## Home Assistant
+- todo
+
 
 #Todo
-- [ ] create dynamic nav based on unique `duplicati_id`s from database
+- [x] create dynamic nav based on unique `duplicati_id`s from database
+- [ ] add FAQ as a page inside the app
+- [ ] mobile friendly
+- [ ] graph trends in app
+- [ ] Home Assistant Template sensor

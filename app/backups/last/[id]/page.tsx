@@ -17,13 +17,15 @@ export default async function BackupById({
 }:Props) {
 
   const data = await getData(params.id, searchParams?.start, searchParams?.stop)
-  // console.log(JSON.stringify(dataById, null, 2))
-  
-  const uniqueKeys = Object.keys(data);
+  // console.log(JSON.stringify(data, null, 2))
+  // console.log({data})
+  // console.log('****** HEY *******')
 
   // console.log(JSON.stringify(uniqueFields, null, 2))
   
   if(!data) return <p>no data found</p>
+
+  const uniqueKeys = Object.keys(data);
 
   return (<>
 

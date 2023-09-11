@@ -1,9 +1,14 @@
 .form{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
+  background-color: var(--c-secondary);
+  padding: .3rem;
+  border-radius: var(--br-dull);
+  width: fit-content;
+  color: var(--c-txt-rev);
 
-  max-width: 30em;
+  // max-width: 30em;
 
   
 }

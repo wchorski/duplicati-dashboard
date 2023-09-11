@@ -2,6 +2,14 @@
 
 $breakpoint-alpha: 480px; // adjust to your needs
 
+.cont{
+  padding: 1rem;
+  background-color: rgba(73, 74, 75, 0.398);
+  backdrop-filter: blur(3px);
+  margin: 1rem 0;
+  border-radius: var(--br-soft);
+}
+
 .header{
   display: flex;
   align-items: center;
@@ -11,11 +19,10 @@ $breakpoint-alpha: 480px; // adjust to your needs
 
 .rwdTable {
 
-  --c-head: rgba(0, 110, 255, 0.534);
-
   margin: 1em 0 3em 0;
   min-width: 300px; // adjust to your needs
   width: 100%;
+  border-collapse: collapse;
 
   caption{
     text-align: left;
@@ -23,16 +30,18 @@ $breakpoint-alpha: 480px; // adjust to your needs
   }
 
   thead{
-    background-color: var(--c-head);
+    border-bottom: solid 2px var(--c-primary);
+    // border-radius: var(--br-soft);
   }
 
   thead th {
     padding: 0.7rem;
+    font-weight: bold;
   }
   
   tr {
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    // border-top: 1px solid #ddd;
+    // border-bottom: 1px solid #ddd;
     padding: 2rem 0;
   }
   
@@ -53,7 +62,7 @@ $breakpoint-alpha: 480px; // adjust to your needs
     // }
 
     &:before {
-      background-color: var(--c-head);
+      background-color: var(--c-primary);
       margin-right: 1rem;
       content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
       font-weight: bold;

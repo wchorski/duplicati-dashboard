@@ -19,7 +19,7 @@ type Props = {
 
 export function TableLogs({entry, uniqueFields}:Props) {
   return (
-    <div key={entry.duplicati_id}>
+    <div key={entry.duplicati_id} className={stylesTable.cont}>
           
       <header className={stylesTable.header}>
         <h3> {entry.duplicati_id} </h3>

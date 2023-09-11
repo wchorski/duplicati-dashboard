@@ -19,7 +19,7 @@ export default async function BackupsPage({
 
 
   const data = await getData(searchParams?.start, searchParams?.stop)
-  console.log(JSON.stringify(data, null, 2))  
+  // console.log(JSON.stringify(data, null, 2))  
 
   const uniqueFields = data[0]?.times[0].items.reduce((uniqueFieldsArray:any, item:any) => {
     const field = item["_field"];
@@ -29,7 +29,7 @@ export default async function BackupsPage({
     return uniqueFieldsArray;
   }, []);
 
-  if(data.statusCode === 400) return <ErrorFromDB code={data.code} message={data.message}/>
+  if(data.statusCode === 400 || data.statusCode === 401) return <ErrorFromDB code={data.code} message={data.message}/>
 
   return (
     <div>
@@ -59,7 +59,7 @@ async function getData(start?:string|number, stop?:string|number) {
   
   const data = await res.json()
 
-  if(data.statusCode === 400) return data
+  if(data.statusCode === 400 || data.statusCode === 401) return data  
   
 
   const result:  Record<string, Record<string, any[]>> = data?.reduce((acc:any, item:any) => {
@@ -87,7 +87,7 @@ async function getData(start?:string|number, stop?:string|number) {
       })),
     };
   });
-  console.log(result);
+  // console.log(result);
   
 
   return organizedArrays

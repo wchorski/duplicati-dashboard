@@ -15,7 +15,9 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --br-dull: 3px;
+  --br-sharp: 2px;
+  --br-dull: 4px;
+  --br-soft: 8px;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -81,11 +83,27 @@
   }
 }
 
+// Fonts
+body {
+  font-family: var(--font-paragraph), Tahoma, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6, thead{
+  font-family: var(--font-header), Verdana, sans-serif;
+}
+
 .siteWrapper{
   max-width: var(--w-sitemax);
   margin-inline: auto;
 }
 
+
+html{
+  height: 100%;
+}
+body{
+  min-height: 100%;
+}
 
 html,
 body {
@@ -98,6 +116,9 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
+  background: url('../public/assets/tiles/tile-dark-sqrs.webp');
+  background-attachment: fixed;
+  background-position: center;
   // background: linear-gradient(
   //     to bottom,
   //     transparent,
@@ -117,14 +138,31 @@ a {
   }
 }
 
+button{
+  cursor: pointer;
+
+  &:active{
+    color: var(--c-accent);
+    background-color: var(--c-txt-rev);
+  }
+}
+
 
 a.button {
   border-radius: var(--br-dull);
   border: solid 1px var(--c-primary);
+  background-color: var(--c-primary);
   padding-inline: 1rem;
+  transition: all .3s;
 
   &:hover, &:focus{
     background-color: var(--c-primary);
+  }
+
+  &:active{
+    color: var(--c-accent);
+    background-color: var(--c-txt-rev);
+    border: solid 1px var(--c-accent);
   }
 }
 

@@ -36,9 +36,9 @@ export default async function BackupById({
   return (
  
     <div>
-      <h1> Backup Log </h1>
+      <h1> ID: {dataById.duplicati_id}</h1>
 
-      <FilterForm />
+      <FilterForm baseUrl={`/backups/${dataById.duplicati_id}`}/>
 
       {data?.map((entry:any) => (
         <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
@@ -68,7 +68,7 @@ async function getData(id:string, start?:string|number, stop?:string|number) {
   // @ts-ignore
   if(response.status === 'error') return console.log('error: ' + res.message);
   const data = response;
-  console.log({data});
+  // console.log({data});
 
   const result:  Record<string, Record<string, any[]>> = data.reduce((acc:any, item:any) => {
     const duplicatiId = item.duplicati_id;
