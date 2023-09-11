@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import { envars } from "@/lib/envars";
 import { useEffect, useState } from "react";

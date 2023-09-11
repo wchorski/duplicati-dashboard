@@ -69,3 +69,4 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 - [ ] mobile friendly
 - [ ] graph trends in app
 - [ ] Home Assistant Template sensor
+- [ ] Don't be lazy and figure out Types in TableClient.tsx component

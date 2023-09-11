@@ -35,7 +35,7 @@ export default async function BackupsPage({
     <div>
       <h1> Backup Logs </h1>
 
-      <FilterForm />
+      <FilterForm baseUrl={`/backups`}/>
 
       {data?.map((entry:any) => (
         <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>

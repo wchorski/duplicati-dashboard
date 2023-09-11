@@ -1,7 +1,6 @@
 import { queryDB } from '@/lib/db_connect';
 import { envars } from '@/lib/envars';
-import { RequestUrl } from '@/types';
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 type Context = {
   params: {
@@ -10,7 +9,7 @@ type Context = {
 }
 
 
-export async function GET(request: RequestUrl, context:Context) {
+export async function GET(request: NextRequest, context:Context) {
   console.log('==== GET sluggy ====');
   const { slug } = context.params
   const { searchParams, pathname } = request.nextUrl

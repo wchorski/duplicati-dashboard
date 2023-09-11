@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import * as fs from 'fs'
 import { queryDB, writeDB } from '@/lib/db_connect';
 import { Duplicati, RequestUrl } from '@/types';
@@ -6,9 +6,9 @@ import { HttpError, Point } from '@influxdata/influxdb-client';
 import { envars } from '@/lib/envars';
 const jsonFilePath =  + '/logs/data.json'; 
  
-export async function GET(request: RequestUrl, ) {
+export async function GET(request: NextRequest, ) {
   
-  console.log('==== GET Backups ====');
+  // console.log('==== GET All Backups ====');
   // const { id } = context.params
   const { searchParams, pathname } = request.nextUrl
 

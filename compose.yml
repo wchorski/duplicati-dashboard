@@ -6,20 +6,21 @@ services:
     image: influxdb:2.7
     container_name: duplicati-dashboard-db
     restart: unless-stopped
-    # ports:
-    #   - '8086:8086'
+    ports:
+      - '4001:8086'
     environment: 
-      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUX_USERNAME}
-      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUX_PASSWORD}
-      - DOCKER_INFLUXDB_INIT_ORG=${INFLUX_ORG}
-      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_TOKEN}
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUX_USERNAME}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUX_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUX_ORG}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUX_BUCKET}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUX_TOKEN}
     volumes:
       - ./db/lib:/var/lib/influxdb2
       - ./db/etc:/etc/influxdb2
       # - ./config.yml:/etc/influxdb2/config.yml
-    networks:
-      - proxy
+    # networks:
+    #   - proxy
 
   app:
     image: duplicati-dashboard
@@ -27,15 +28,15 @@ services:
     restart: unless-stopped
     build:
       dockerfile: Dockerfile
-    # ports:
-    #   - 3000:3000 
+    ports:
+      - 4000:3000 
     depends_on:
       - db
-    networks:
-      - proxy
+    # networks:
+    #   - proxy
 
-networks:
-  proxy: 
-    name: nginx-prox-mgmt-3_default # whatever proxy container network
-    driver: bridge
-    external: true
+# networks:
+#   proxy: 
+#     name: nginx-prox-mgmt-3_default # whatever proxy container network
+#     driver: bridge
+#     external: true

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import { queryDB, writeDB } from '@/lib/db_connect';
 import { Duplicati, QuerySearchParams, RequestUrl } from '@/types';
 import { HttpError, Point } from '@influxdata/influxdb-client';
@@ -11,9 +11,9 @@ type Context = {
   }
 }
  
-export async function GET(request: RequestUrl, context:Context) {
+export async function GET(request: NextRequest, context:Context) {
   
-  console.log('==== GET Backup by Id ====');
+  // console.log('==== GET Backup by Id ====');
   const { id } = context.params
   const { searchParams, pathname } = request.nextUrl
 

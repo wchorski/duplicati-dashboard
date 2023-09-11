@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 
 type Props = {
-  pad:number,
+  pad?:number,
   children:ReactNode
 }
 
