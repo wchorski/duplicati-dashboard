@@ -25,6 +25,7 @@ Here is a breakdown of what endpoints and search parameters that can be passed t
 
 http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 
+
 - `BACKUP_ID` => the id (or name) of the backup saved
 - stuff after the "?" search query sets range of time of pulled data
   - **start** => how far back to you want to start pulling data i.e. 
@@ -38,6 +39,7 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
     - all the other examples above as long as the date is after the `start`
     - both query parameters can be omitted
   - **last** => set to true if you'd like the last recorded point in the table
+    - can also use the `http://localhost:3000/api/backups/last/BACKUP_ID` endpoint for cleaner GET (this endpoint also takes `start` and `stop` query parameters)
   - **first** => same as *last* but returns the first point of recoreded data within the range
 
 > [!note] make sure relative dates have a negative i.e. `-5h` as your are looking back in time. Positive time values will cause errors
@@ -46,18 +48,15 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 1. `git clone https://github.com/wchorski/duplicati-dashboard.git && cd duplicati-dashboard`
 2. `cp .env.template .env.local`
 3. set up InfluxDB instance
+3. get InfluxDB API Token for `.env.local`
 3. `yarn install`
 3. `yarn dev`
 
 ## 🏭 Production
 1. `git clone https://github.com/wchorski/duplicati-dashboard.git && cd duplicati-dashboard`
 2. `cp .env.template .env`
+4. the **INFLUX_TOKEN** in `.env` should be a long ~88 character string
 3. `docker compose up -d`
-4. sign in to InfluxDB admin panel
-  1. get InfluxDB API Key
-5. `docker compose down`
-6. edit `.env` with API key
-7. `docker compose up -d`
 
 ## Home Assistant
 - todo
@@ -70,3 +69,4 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 - [ ] graph trends in app
 - [ ] Home Assistant Template sensor
 - [ ] Don't be lazy and figure out Types in TableClient.tsx component
+- [ ] get real data for screenshots

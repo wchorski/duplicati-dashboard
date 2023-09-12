@@ -1,3 +1,4 @@
+import { Section } from "@/components/Section";
 import { datePretty } from "@/lib/dateFormatter"
 import { envars } from "@/lib/envars"
 import { labelPretty } from "@/lib/labelFormatter";
@@ -29,8 +30,11 @@ export default async function BackupById({
 
   return (<>
 
+    <Section col={1}>
       <h1> Last: {params.id}</h1>
+    </Section>
 
+    <Section col={1}>
       <table className={stylesTable.rwdTable} >
       
         <thead>
@@ -49,7 +53,8 @@ export default async function BackupById({
           </tr>
         </tbody>
       </table>
-
+    </Section>
+    
   </>)
 }
 

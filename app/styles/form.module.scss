@@ -1,0 +1,24 @@
+.form{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  border:solid 1px var(--c-secondary);
+  padding: .3rem;
+  border-radius: var(--br-dull);
+  width: fit-content;
+  // color: var(--c-txt-rev);
+
+  label{
+    width: 100%;
+    min-width: 1rem;
+  }
+  // max-width: 30em;
+
+  button[type="submit"]{
+    height: fit-content;
+    margin-top: auto;
+    background-color: var(--c-secondary);
+    color: var(--c-txt-rev);
+  }
+  
+}

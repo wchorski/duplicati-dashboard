@@ -1,4 +1,5 @@
 import { FilterForm } from "@/components/FilterForm";
+import { Section } from "@/components/Section";
 import { TableLogs } from "@/components/TableLogs";
 import { datePretty } from "@/lib/dateFormatter"
 import { envars } from "@/lib/envars"
@@ -35,7 +36,7 @@ export default async function BackupById({
 
   return (
  
-    <div>
+    <Section col={1}>
       <h1> ID: {dataById.duplicati_id}</h1>
 
       <FilterForm baseUrl={`/backups/${dataById.duplicati_id}`}/>
@@ -46,7 +47,7 @@ export default async function BackupById({
 
 
       {/* <p> {JSON.stringify(data)}</p> */}
-    </div>
+    </Section>
   )
 }
 

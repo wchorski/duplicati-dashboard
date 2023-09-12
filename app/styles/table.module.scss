@@ -62,10 +62,11 @@ $breakpoint-alpha: 480px; // adjust to your needs
     // }
 
     &:before {
-      background-color: var(--c-primary);
+      border-bottom: solid 1px var(--c-primary);
       margin-right: 1rem;
       content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
       font-weight: bold;
+      font-family: var(--font-header);
 
       // optional stuff to make it look nicer
       width: 6.5em; // magic number :( adjust according to your own content

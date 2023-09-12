@@ -2,6 +2,7 @@ import './globals.scss'
 import type { Metadata } from 'next'
 import { Inter, Barlow } from 'next/font/google'
 import layoutStyles from '@styles/layout.module.scss'
+
 import { Nav } from '@/components/Nav'
 import { envars } from '@/lib/envars'
 import Footer from '@/components/Footer'
@@ -21,11 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={[header.variable, paragraph.variable, layoutStyles.wide].join(' ')}>
+      <body className={[header.variable, paragraph.variable,].join(' ')}>
 
         <Nav />
 
-        <main className={[layoutStyles.main, layoutStyles.wrapper, 'siteWrapper'].join(' ')}>
+        <main className={[layoutStyles.main].join(' ')}>
           {children}
         </main>
 

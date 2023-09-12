@@ -1,5 +1,6 @@
 import { ErrorFromDB } from "@/components/ErrorFromDB";
 import { FilterForm } from "@/components/FilterForm";
+import { Section } from "@/components/Section";
 import { TableLogs } from "@/components/TableLogs";
 import { datePretty } from "@/lib/dateFormatter";
 import { envars } from "@/lib/envars";
@@ -32,7 +33,7 @@ export default async function BackupsPage({
   if(data.statusCode === 400 || data.statusCode === 401) return <ErrorFromDB code={data.code} message={data.message}/>
 
   return (
-    <div>
+    <Section col={1}>
       <h1> Backup Logs </h1>
 
       <FilterForm baseUrl={`/backups`}/>
@@ -42,7 +43,7 @@ export default async function BackupsPage({
       ))}
 
       {/* <p> {JSON.stringify(data)}</p> */}
-    </div>
+    </Section>
   )
 }
 
