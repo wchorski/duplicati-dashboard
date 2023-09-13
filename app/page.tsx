@@ -1,13 +1,17 @@
 import Image from 'next/image'
 import styles from '@styles/page.module.scss'
 import { Section } from '@/components/Section'
+import LayoutExample from '@/components/LayoutExample'
+import { Main } from '@/components/layouts/Main'
 
 export default function Home() {
   return (
-    <>
+    <Main>
 
       <Section col={1}>
-        <div className={styles.center}>
+        <div 
+          // className={styles.center}
+        >
           <Image src={`/assets/logo.png`} width={200} height={200} alt='site logo'/>
           <h2 className='siteTitle'> Duplicati-Dashboard </h2>
           <p> Monitor and query all your duplicati clients in one location </p>
@@ -50,6 +54,9 @@ export default function Home() {
             <p> Learn how to manipulate the URL string to fetch filtered data </p>
           </a>
       </Section>
-    </>
+
+      {/* //TODO just for testing */}
+      <LayoutExample />
+    </Main>
   )
 }

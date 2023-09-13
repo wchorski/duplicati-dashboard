@@ -1,5 +1,5 @@
 .section :global{
-  padding-block: var(--p-sectionblock);
+  // padding-block: var(--p-sectionblock);
 
   .bg-primary{
     background: var(--c-primary);
@@ -10,7 +10,7 @@
 }
 
 .sectiongrid{
-  --p-sitewrapper: 1rem;
+  --p-sitewrapper: 0;
 
   // border: solid 1px rgb(63, 205, 50);
   padding-block: 0;
@@ -24,7 +24,7 @@
   }
   
   > :not(img) {
-    padding-block: var(--p-sectionblock);
+    // padding-block: var(--p-sectionblock);
     padding-inline: var(--p-sitewrapper);
     // background: rgb(31, 102, 102);
   }
@@ -184,6 +184,7 @@
   backdrop-filter: blur(3px);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
+  width: fit-content;
 }
 
 .card span {

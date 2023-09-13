@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import styles from "@styles/page.module.scss";
+import styles from "@styles/section.module.scss";
 
 type Props = {
   pad?:number,
@@ -17,7 +17,7 @@ export function Section({
   children}:Props
 ) {
 
-  const styleArr = [styles.section, styles.sectiongrid]
+  const styleArr = [styles.section, styles.grid]
 
   if(col) return (
     <section 

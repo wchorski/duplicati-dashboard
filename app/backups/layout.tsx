@@ -2,6 +2,9 @@ import { ErrorFromDB } from "@/components/ErrorFromDB";
 import { FilterForm } from "@/components/FilterForm";
 import { Section } from "@/components/Section";
 import { TableLogs } from "@/components/TableLogs";
+import { AsideBar } from "@/components/layouts/AsideBar";
+import { Card } from "@/components/layouts/Card";
+import { Main } from "@/components/layouts/Main";
 import { envars } from "@/lib/envars";
 import { OrganizedData, QuerySearchParams } from "@/types";
 import { ReactNode } from "react";
@@ -31,19 +34,26 @@ export default async function BackupsLayout({
 
   if(data.statusCode === 400 || data.statusCode === 401) return <ErrorFromDB code={data.code} message={data.message}/>
 
-  return (<>
+  return (<div className={`layout--main-aside`} >
     {/* <Section col={1}> */}
-      <h1> Backup Logs </h1>
+    <Main>
+      {children}
+    </Main>
 
-      <FilterForm baseUrl={`/backups`}/>
+    <AsideBar>
+      <Card>
+        <p> cardy</p>
+      </Card>
+      <Card>
+        <p> cardy</p>
+      </Card>
+      <Card>
+        <p> cardy</p>
+      </Card>
+    </AsideBar>
 
-      {data?.map((entry:any) => (
-        <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
-      ))}
 
-      {/* <p> {JSON.stringify(data)}</p> */}
-    {/* </Section> */}
-  </>)
+  </div>)
 }
 
 async function getData(start?:string|number, stop?:string|number) {

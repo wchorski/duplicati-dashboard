@@ -9,6 +9,7 @@ import Footer from '@components/Footer'
 import { Main } from '@components/layouts/Main'
 import LayoutExample from '@/components/LayoutExample'
 import { Card } from '@/components/layouts/Card'
+import { AsideBar } from '@/components/layouts/AsideBar'
 
 const header = Inter({ subsets: ['latin'], variable: '--font-header' })
 const paragraph = Barlow({ weight: '200', subsets: ['latin'], variable: '--font-paragraph' })
@@ -25,18 +26,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={[header.variable, paragraph.variable, 'layout--main-aside' ].join(' ')}>
+      <body className={[
+        header.variable, 
+        paragraph.variable, 
+        'layout--fullwidth',
+        // 'layout--main-aside',
+      ].join(' ')}>
 
         <Nav />
 
-        <Main 
-          // columns={1}
-        >
-          {/* <LayoutExample /> */}
-          {children}
-        </Main>
+        {/* <Main> */}
+      
+        {children}
 
-        <aside>
+    
+        {/* </Main> */}
+
+        {/* <AsideBar>
           <Card> 
             <h3> one </h3>
             <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum deleniti perferendis nesciunt suscipit inventore id, eos, est debitis cum fugit dolores aliquid, magnam ad veritatis quidem quia expedita! Provident, quas.</p>
@@ -49,7 +55,7 @@ export default function RootLayout({
             <h3> one </h3>
             <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum deleniti perferendis nesciunt suscipit inventore id, eos, est debitis cum fugit dolores aliquid, magnam ad veritatis quidem quia expedita! Provident, quas.</p>
           </Card>
-        </aside>
+        </AsideBar> */}
 
 
 
