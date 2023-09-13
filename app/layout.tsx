@@ -5,7 +5,10 @@ import layoutStyles from '@styles/layout.module.scss'
 
 import { Nav } from '@/components/Nav'
 import { envars } from '@/lib/envars'
-import Footer from '@/components/Footer'
+import Footer from '@components/Footer'
+import { Main } from '@components/layouts/Main'
+import LayoutExample from '@/components/LayoutExample'
+import { Card } from '@/components/layouts/Card'
 
 const header = Inter({ subsets: ['latin'], variable: '--font-header' })
 const paragraph = Barlow({ weight: '200', subsets: ['latin'], variable: '--font-paragraph' })
@@ -22,13 +25,33 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={[header.variable, paragraph.variable,].join(' ')}>
+      <body className={[header.variable, paragraph.variable, 'layout--main-aside' ].join(' ')}>
 
         <Nav />
 
-        <main className={[layoutStyles.main].join(' ')}>
+        <Main 
+          // columns={1}
+        >
+          {/* <LayoutExample /> */}
           {children}
-        </main>
+        </Main>
+
+        <aside>
+          <Card> 
+            <h3> one </h3>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum deleniti perferendis nesciunt suscipit inventore id, eos, est debitis cum fugit dolores aliquid, magnam ad veritatis quidem quia expedita! Provident, quas.</p>
+          </Card>
+          <Card> 
+            <h3> one </h3>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum deleniti perferendis nesciunt suscipit inventore id, eos, est debitis cum fugit dolores aliquid, magnam ad veritatis quidem quia expedita! Provident, quas.</p>
+          </Card>
+          <Card> 
+            <h3> one </h3>
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum deleniti perferendis nesciunt suscipit inventore id, eos, est debitis cum fugit dolores aliquid, magnam ad veritatis quidem quia expedita! Provident, quas.</p>
+          </Card>
+        </aside>
+
+
 
         <Footer />
         

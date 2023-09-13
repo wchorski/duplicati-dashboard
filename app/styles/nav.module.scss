@@ -1,14 +1,24 @@
+.active {
+  border-bottom: solid 1px var(--c-primary);
+  color: var(--c-accent);
+}
+
+
 .nav :global{
 
   position: sticky;
   top: 0;
   z-index: 999;
   backdrop-filter: blur(3px);
+  background-color: rgba(55, 55, 55, 0.368);
   width: 100%;
 
   div.siteWrapper {
     display: flex;
     justify-content: space-between;
+
+    // debug
+    border: dashed 1px rgb(43, 226, 83);
   }
 
   ul {
@@ -24,26 +34,27 @@
     a {
       padding: 1rem;
       display: inline-block;
-      transition-property: color, background;
+      transition-property: color, background, border;
       transition-duration: .2s;
       transition-timing-function: linear;
       display: grid;
       place-items: center;
       flex-grow: 1;
+      border-bottom: solid 1px transparent;
 
       &:hover, &:focus{
-        background-color: var(--c-secondary);
-        color: var(--c-txt-rev);
+        border-bottom: solid 1px var(--c-accent);
       }
 
       &:active{
-        background-color: var(--c-accent);
+        border-bottom: solid 1px var(--c-accent);
+        color: var(--c-accent);
       }
     }
   }
   
   ul.main {
-    background-color: rgb(56, 63, 80);
+    // background-color: rgb(56, 63, 80);
     display: flex;
     max-width: fit-content;
     border-radius: 0 0 var(--br-dull) var(--br-dull);

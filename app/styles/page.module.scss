@@ -45,6 +45,12 @@
       minmax(0, calc(var(--w-sitemax) / 2)) 
       minmax(var(--p-sitewrapper), 1fr);
 
+    // // debugging
+    // border: dotted 3px yellow;
+    // > * {
+    //   outline: dotted 1px white;
+    // }
+
     button {
       width: fit-content;
     }
@@ -61,16 +67,17 @@
       display: grid;
       align-content: center;
       justify-content: start;
+      padding-inline: 1rem;
     }
 
     > :not(img):first-child{
       grid-column: 2 / 3;
-      padding-left: 0;
-      padding-right: clamp(1rem, 5vw, 3rem);
+      // padding-left: 0;
+      // padding-right: clamp(1rem, 5vw, 3rem);
     }
     > :not(img):last-child{
       grid-column: 3 / 4;
-      padding-right: 0;
+      // padding-right: 0;
       // todo looks good with paragraphs but not other elements
       // padding-left: clamp(1rem, 5vw, 3rem);
     }
