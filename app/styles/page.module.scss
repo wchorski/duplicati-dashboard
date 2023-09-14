@@ -1,12 +1,46 @@
 .page {
 
-  &--header-main-aside{
+  &--header-main {
+    display: grid;
+  
+    grid-template-areas: 
+      "heading heading heading heading"
+      "main    main    main    main"
+    ;
+    grid-template-columns: 
+      minmax(0, 1fr) 
+      minmax(0, calc(var(--w-sitemax))) 
+      minmax(0, 1fr);
+    align-content: flex-start;
+    gap: 1rem;
+
+    // // debug
+    // border: dotted 1px aqua;
+    // > * {
+    //   border: dashed 2px red;
+    // }
+  
+    > header {
+      grid-area: heading;
+      grid-column: 2 / 4;
+      // margin-bottom: 1rem;
+      padding-inline: 1rem;
+    }
+  
+    > main {
+      grid-area: main;
+      grid-column: 2 / 4;
+    }
+  
+  }
+
+  &--header-main-aside {
     // background-color: tomato;
     display: grid;
   
     grid-template-areas: 
       "heading heading heading heading"
-      "main   main   aside  aside"
+      "main    main    aside   aside"
     ;
     grid-template-columns: 
       minmax(0, 1fr) 

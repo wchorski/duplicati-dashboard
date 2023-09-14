@@ -1,0 +1,36 @@
+.loading{
+
+  > ul {
+    list-style: none;
+    display: flex;
+    padding-inline: 1rem;
+    gap: 5px;
+  
+    > li {
+      background-color: white;
+      height: 10px;
+      width: 10px;
+      opacity: 0;
+      animation-name: animItem;
+      animation-timing-function: ease-in;
+      animation-fill-mode: forwards;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+
+      border-radius: 50%;
+      // animation: animItem 0.3s forwards ease-in;
+    }
+  }
+}
+
+
+@keyframes animItem {
+  0%{
+    opacity: 0.1;
+    // transform: translateX(-0.3rem);
+  }
+  100%{
+    opacity: 1.0;
+    // transform: translateX(0);
+  }
+}

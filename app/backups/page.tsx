@@ -13,6 +13,8 @@ import styles from '@styles/page.module.scss'
 import styleList from '@styles/list.module.scss'
 import { BackupIdsList } from "@components/backups/BackupIdsList"
 import { List } from "@components/layouts/List"
+import { PageTHeaderMainAside } from "@components/layouts/PageTemplates"
+import { LoadingAnim } from "@components/LoadingAnim"
 
 
 type Props = {
@@ -37,38 +39,56 @@ export default async function BackupsPage ({
 
   if(data.statusCode === 400 || data.statusCode === 401) return <ErrorFromDB code={data.code} message={data.message}/>
   
+
   return (
-    <div className={[
-      `page-wrapper`, 
-      // `layout--main-aside`,
-      styles['page--header-main-aside'],
-    ].join(' ')} >
-
-      <header>
-        <h1> Backup Logs </h1>
-        <FilterForm baseUrl={`/backups`}/>
-      </header>
-
-      <MainContainer>
-        <section>
-          <List isAnimated={true}>
-            {data?.map((entry:any, i:number) => (
-              <TableLogs entry={entry} uniqueFields={uniqueFields} key={i}/>
-            ))}
-          </List>
-        </section>
-      </MainContainer>
-
-      <AsideBar>
-        <Card>
-          <h2> Quick Nav </h2>
-          <BackupIdsList />
-        </Card>
-      </AsideBar>
-    </div>
+    <PageTHeaderMainAside 
+      header={Header()}
+      main={Main({data, uniqueFields})}
+      aside={Aside()}
+    />
   )
 }
 
+
+//? Content
+function Header(){
+
+  return <>
+    <h1> Backup Logs </h1>
+    <FilterForm baseUrl={`/backups`}/>
+  </>
+}
+
+
+type DupData = {
+  duplicati_id:string,
+  times:any[],
+}
+
+function Main({data, uniqueFields}:{data:DupData[], uniqueFields:string[]}){
+
+  return <>
+    <section>
+      <List isAnimated={true}>
+        {data?.map((entry:any, i:number) => (
+          <TableLogs entry={entry} uniqueFields={uniqueFields} key={i}/>
+        ))}
+      </List>
+    </section>
+  </>
+}
+
+function Aside(){
+  return <>
+    <Card>
+      <h2> Quick Nav </h2>
+      <BackupIdsList />
+    </Card>
+  </>
+}
+
+
+//? Data Fetching
 async function getData(start?:string|number, stop?:string|number) {
   const res = await fetch(envars.FRONTEND_URL + `/api/backups?start=${start}&stop=${stop}`)
   // The return value is *not* serialized
