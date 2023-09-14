@@ -13,20 +13,16 @@ export async function GET(request: NextRequest, ) {
   const { searchParams, pathname } = request.nextUrl
 
   // todo figure out how to type .get() functions
-  // @ts-ignore
+
   const start = searchParams.get('start') === 'undefined' ||
-                // @ts-ignore
                 searchParams.get('start') === null
                   ? '-40d' 
-                // @ts-ignore
                   : searchParams.get('start')
-  // @ts-ignore
-  const stop = searchParams.get('stop') === 'undefined' ||
-              // @ts-ignore
-              searchParams.get('stop') === null
-              ? 'now()' 
-              // @ts-ignore
-              : searchParams.get('stop')
+
+  const stop =  searchParams.get('stop') === 'undefined' ||
+                searchParams.get('stop') === null
+                ? 'now()' 
+                : searchParams.get('stop')
 
   let fluxQuery = `
     from(bucket: "${envars.INFLUX_BUCKET}")
@@ -104,34 +100,3 @@ export async function POST(request: Request) {
   }
   
 }
-
-// function writeJsonFile(filePath: string, jsonData: any): Promise<void> {
-//   return new Promise((resolve, reject) => {
-//     const jsonString = JSON.stringify(jsonData, null, 2); // Pretty-print with 2 spaces
-//     fs.writeFile(filePath, jsonString, 'utf-8', (err) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         console.log(`JSON data written successfully to ${filePath}`);
-//         resolve();
-//       }
-//     });
-//   });
-// }
-
-// function readJsonFile(filePath: string): Promise<any> {
-//   return new Promise((resolve, reject) => {
-//     fs.readFile(filePath, 'utf-8', (err, data) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         try {
-//           const jsonData = JSON.parse(data);
-//           resolve(jsonData);
-//         } catch (parseError) {
-//           reject(parseError);
-//         }
-//       }
-//     });
-//   });
-// }

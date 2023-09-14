@@ -1,15 +1,6 @@
 @import './styles/vars.scss';
 @import './styles/layout.scss';
-
-
-// Fonts
-body {
-  font-family: var(--font-paragraph), Tahoma, sans-serif;
-}
-
-h1,h2,h3,h4,h5,h6, thead{
-  font-family: var(--font-header), Verdana, sans-serif;
-}
+@import './styles/global/typography.scss';
 
 .siteWrapper{
   max-width: var(--w-sitemax);
@@ -19,6 +10,7 @@ h1,h2,h3,h4,h5,h6, thead{
 
 html{
   height: 100%;
+  scroll-behavior: smooth;
 }
 body{
   min-height: 100%;
@@ -66,6 +58,12 @@ button{
   }
 }
 
+a{
+  transition: color .3s;
+  &:hover, &:focus{
+    color: var(--c-accent);
+  }
+}
 
 a.button {
   border-radius: var(--br-dull);

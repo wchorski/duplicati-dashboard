@@ -4,7 +4,14 @@ import { TableLogs } from "@/components/TableLogs";
 import { datePretty } from "@/lib/dateFormatter"
 import { envars } from "@/lib/envars"
 import { OrganizedData, QuerySearchParams } from "@/types"
+import { AsideBar } from "@components/layouts/AsideBar";
+import { Card } from "@components/layouts/Card";
+import { MainContainer } from "@components/layouts/MainContainer";
 import stylesTable from "@styles/table.module.scss";
+import Link from "next/link";
+import styles from '@styles/page.module.scss'
+import { BackupIdsList } from "@components/backups/BackupIdsList";
+import { List } from "@components/layouts/List";
 
 type Props = {
   params: {
@@ -20,7 +27,7 @@ export default async function BackupById({
 
   const data = await getData(params.id, searchParams?.start, searchParams?.stop)
   const dataById = data?.find(d => d.duplicati_id === params.id) 
-  // console.log(JSON.stringify(dataById, null, 2))
+  // console.log(JSON.stringify(data, null, 2))
   
   const uniqueFields = dataById?.times[0].items.reduce((uniqueFieldsArray:any, item:any) => {
     const field = item["_field"];
@@ -35,19 +42,36 @@ export default async function BackupById({
   if(!dataById) return <p>no data found</p>
 
   return (
- 
-    <Section col={1}>
-      <h1> ID: {dataById.duplicati_id}</h1>
 
-      <FilterForm baseUrl={`/backups/${dataById.duplicati_id}`}/>
+    <div className={[
+      `page-wrapper`, 
+      // `layout--main-aside`,
+      styles['page--header-main-aside'],
+    ].join(' ')} >
 
-      {data?.map((entry:any) => (
-        <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
-      ))}
+      <header>
+        <h1> ID: {dataById.duplicati_id} </h1>
+        <FilterForm baseUrl={`/backups`}/>
+      </header>
 
+      <MainContainer>
+        <section>
+          <List isAnimated={true}>
+            {data?.map((entry:any) => (
+              <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
+            ))}
+            <li></li>
+          </List>
+        </section>
+      </MainContainer>
 
-      {/* <p> {JSON.stringify(data)}</p> */}
-    </Section>
+      <AsideBar>
+        <Card>
+          <h2> Quick Nav </h2>
+          <BackupIdsList />
+        </Card>
+      </AsideBar>
+    </div>
   )
 }
 

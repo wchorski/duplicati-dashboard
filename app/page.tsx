@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import styles from '@styles/page.module.scss'
+import styles from '@styles/pagevercel.module.scss'
 import { Section } from '@/components/Section'
 import LayoutExample from '@/components/LayoutExample'
-import { Main } from '@/components/layouts/Main'
+import { MainContainer } from '@components/layouts/MainContainer'
 
 export default function Home() {
   return (
-    <Main>
+    <MainContainer>
 
       <Section col={1}>
         <div 
@@ -56,7 +56,7 @@ export default function Home() {
       </Section>
 
       {/* //TODO just for testing */}
-      <LayoutExample />
-    </Main>
+      {/* <LayoutExample /> */}
+    </MainContainer>
   )
 }

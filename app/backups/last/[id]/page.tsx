@@ -4,6 +4,13 @@ import { envars } from "@/lib/envars"
 import { labelPretty } from "@/lib/labelFormatter";
 import { OrganizedData, QuerySearchParams } from "@/types"
 import stylesTable from "@styles/table.module.scss";
+import styles from '@styles/page.module.scss'
+import { MainContainer } from "@components/layouts/MainContainer";
+import { FilterForm } from "@components/FilterForm";
+import { List } from "@components/layouts/List";
+import { AsideBar } from "@components/layouts/AsideBar";
+import { Card } from "@components/layouts/Card";
+import { BackupIdsList } from "@components/backups/BackupIdsList";
 
 type Props = {
   params: {
@@ -30,30 +37,50 @@ export default async function BackupById({
 
   return (<>
 
-    <Section col={1}>
-      <h1> Last: {params.id}</h1>
-    </Section>
+    <div className={[
+      `page-wrapper`, 
+      // `layout--main-aside`,
+      styles['page--header-main-aside'],
+    ].join(' ')} >
 
-    <Section col={1}>
-      <table className={stylesTable.rwdTable} >
-      
-        <thead>
-          <tr>
-            {uniqueKeys.map((field:string) => (
-              <th key={field}> {labelPretty(field)} </th>
-            ))}
-          </tr>
-        </thead>
+      <header>
+        <h1> Last: {params.id}</h1>
+        <FilterForm baseUrl={`/backups/last`}/>
+      </header>
 
-        <tbody>
-          <tr>
-            {uniqueKeys.map((key, i) => (
-              <td key={i} data-th={labelPretty(key)}>{data[key]}</td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
-    </Section>
+      <MainContainer>
+        <section>
+          <List isAnimated={true}>
+            <table className={stylesTable.rwdTable} >
+        
+              <thead>
+                <tr>
+                  {uniqueKeys.map((field:string) => (
+                    <th key={field}> {labelPretty(field)} </th>
+                  ))}
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  {uniqueKeys.map((key, i) => (
+                    <td key={i} data-th={labelPretty(key)}>{data[key]}</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+            <li></li>
+          </List>
+        </section>
+      </MainContainer>
+
+      <AsideBar>
+        <Card>
+          <h2> Quick Nav </h2>
+          <BackupIdsList />
+        </Card>
+      </AsideBar>
+    </div>
     
   </>)
 }

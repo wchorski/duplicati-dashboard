@@ -1,13 +1,15 @@
 // https://codepen.io/geoffyuen/pen/DZxEKy
 
-$breakpoint-alpha: 480px; // adjust to your needs
+$breakpoint-alpha: 880px; // adjust to your needs
 
 .cont{
   padding: 1rem;
-  background-color: rgba(73, 74, 75, 0.398);
-  backdrop-filter: blur(3px);
-  margin: 1rem 0;
+  background-color: rgba(73, 74, 75, 0.575);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(20px);
+  margin-bottom: 1rem;
   border-radius: var(--br-soft);
+  box-shadow: var(--boxs-1);
 }
 
 .header{
@@ -19,10 +21,13 @@ $breakpoint-alpha: 480px; // adjust to your needs
 
 .rwdTable {
 
+  --w-breakpoint: 480px;
+
   margin: 1em 0 3em 0;
   min-width: 300px; // adjust to your needs
   width: 100%;
   border-collapse: collapse;
+  container-type: inline-size;
 
   caption{
     text-align: left;
@@ -75,6 +80,10 @@ $breakpoint-alpha: 480px; // adjust to your needs
       @media (min-width: $breakpoint-alpha) {
         display: none;
       }
+      
+      @container (min-width: $breakpoint-alpha) {
+        display: none;
+      }
     }
   }
   
@@ -84,14 +93,10 @@ $breakpoint-alpha: 480px; // adjust to your needs
     @media (min-width: $breakpoint-alpha) {
       display: table-cell;
       padding: .25em .5em;
-      
-      // &:first-child {
-      //   padding-left: .5rem;
-      // }
-      
-      // &:last-child {
-      //   padding-right: .5rem;
-      // }
+    }
+    @container (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
     }
 
   }
@@ -104,4 +109,5 @@ $breakpoint-alpha: 480px; // adjust to your needs
   
   
 }
+
 

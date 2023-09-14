@@ -10,7 +10,6 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           > 
-            powered by; 
             <span> {`There's a Will There's a Web.site`} </span>
           </a>
         </div>

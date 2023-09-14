@@ -22,7 +22,7 @@ export function TableLogs({entry, uniqueFields}:Props) {
     <div key={entry.duplicati_id} className={stylesTable.cont}>
           
       <header className={stylesTable.header}>
-        <h3> {entry.duplicati_id} </h3>
+        <h3 id={entry.duplicati_id}> {entry.duplicati_id} </h3>
         <Link 
           href={`/backups/${entry.duplicati_id}`}
           className="button"

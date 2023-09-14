@@ -6,7 +6,7 @@ import layoutStyles from '@styles/layout.module.scss'
 import { Nav } from '@/components/Nav'
 import { envars } from '@/lib/envars'
 import Footer from '@components/Footer'
-import { Main } from '@components/layouts/Main'
+import { MainContainer } from '@components/layouts/MainContainer'
 import LayoutExample from '@/components/LayoutExample'
 import { Card } from '@/components/layouts/Card'
 import { AsideBar } from '@/components/layouts/AsideBar'
@@ -35,12 +35,12 @@ export default function RootLayout({
 
         <Nav />
 
-        {/* <Main> */}
+        {/* <MainContainer> */}
       
         {children}
 
     
-        {/* </Main> */}
+        {/* </MainContainer> */}
 
         {/* <AsideBar>
           <Card> 

@@ -1,9 +1,19 @@
 import { ErrorFromDB } from "@/components/ErrorFromDB"
 import { FilterForm } from "@/components/FilterForm"
+import { Section } from "@/components/Section"
 import { TableLogs } from "@/components/TableLogs"
+import { AsideBar } from "@/components/layouts/AsideBar"
+import { Card } from "@/components/layouts/Card"
+import { MainContainer } from "@components/layouts/MainContainer"
 import { envars } from "@/lib/envars"
 import { OrganizedData, QuerySearchParams } from "@/types"
+import Link from "next/link"
 import { ReactNode } from "react"
+import styles from '@styles/page.module.scss'
+import styleList from '@styles/list.module.scss'
+import { BackupIdsList } from "@components/backups/BackupIdsList"
+import { List } from "@components/layouts/List"
+
 
 type Props = {
   searchParams:QuerySearchParams,
@@ -27,15 +37,36 @@ export default async function BackupsPage ({
 
   if(data.statusCode === 400 || data.statusCode === 401) return <ErrorFromDB code={data.code} message={data.message}/>
   
-  return (<>
-      <h1> Backup Logs </h1>
+  return (
+    <div className={[
+      `page-wrapper`, 
+      // `layout--main-aside`,
+      styles['page--header-main-aside'],
+    ].join(' ')} >
 
-      <FilterForm baseUrl={`/backups`}/>
+      <header>
+        <h1> Backup Logs </h1>
+        <FilterForm baseUrl={`/backups`}/>
+      </header>
 
-      {data?.map((entry:any) => (
-        <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
-      ))}
-  </>)
+      <MainContainer>
+        <section>
+          <List isAnimated={true}>
+            {data?.map((entry:any, i:number) => (
+              <TableLogs entry={entry} uniqueFields={uniqueFields} key={i}/>
+            ))}
+          </List>
+        </section>
+      </MainContainer>
+
+      <AsideBar>
+        <Card>
+          <h2> Quick Nav </h2>
+          <BackupIdsList />
+        </Card>
+      </AsideBar>
+    </div>
+  )
 }
 
 async function getData(start?:string|number, stop?:string|number) {

@@ -79,7 +79,7 @@
       grid-column: 1 / -1;
     }
   
-    > main {
+    > main, > .page-wrapper {
       grid-area: main;
       grid-column: 2 / 3;
     }
@@ -107,6 +107,13 @@
   // todo can i catch all any future layout? "&--*" ?
   &--main-aside, &--fullwidth{
     // border: double white 10px;
+    // todo do i even need row template?
+    // grid-template-rows: auto 1fr auto;
+
+    // // debug
+    // > * {
+    //   border: dashed pink 2px;
+    // }
 
     > nav {
       grid-area: navi;
@@ -121,7 +128,7 @@
   }
 
   &--fullwidth {
-    > main {
+    > main, > .page-wrapper  {
       grid-area: main;
       grid-column: 1 / -1;
     }

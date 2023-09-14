@@ -1,0 +1,30 @@
+ul.linklist{
+  list-style: none;
+  padding: 0;
+  line-height: 2rem;
+  margin-top: 0;
+
+}
+
+ul.animated {
+
+  > li {
+    opacity: 0;
+    animation-name: animItem;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    // animation: animItem 0.3s forwards ease-in;
+  }
+
+}
+
+@keyframes animItem {
+  0%{
+    opacity: 0.3;
+    transform: translateX(-0.3rem);
+  }
+  100%{
+    opacity: 1.0;
+    transform: translateX(0);
+  }
+}
