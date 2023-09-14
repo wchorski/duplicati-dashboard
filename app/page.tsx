@@ -10,7 +10,7 @@ export default function Home() {
 
       <Section col={1}>
         <div 
-          // className={styles.center}
+          className={styles.center}
         >
           <Image src={`/assets/logo.png`} width={200} height={200} alt='site logo'/>
           <h2 className='siteTitle'> Duplicati-Dashboard </h2>
