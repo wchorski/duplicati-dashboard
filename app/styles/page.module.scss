@@ -1,47 +1,60 @@
 $--w-sitemax: 100em;
 
 .page {
-
-  &.header_main_aside, &.header_main {
-    display: grid;
-    gap: 1rem;
-    // background: green;
+  display: grid;
+  gap: 1rem;
+  // leaves those lovely lil inline gaps on mobile, but expands fully on desktop
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--w-sitemax)) minmax(0, 1fr);
+  
+  > * {
+    grid-column: 2/2;
+    // debug
+    // border: dashed yellow 1px;
   }
 
-  &.header_main {
-  
-    grid-template-areas: 
-      "heading heading heading heading"
-      "main    main    main    main"
-    ;
-    grid-template-columns: 
-      minmax(0, 1fr) 
-      minmax(0, calc(var(--w-sitemax))) 
-      minmax(0, 1fr);
-    align-content: flex-start;
-
-
-    // // debug
-    // border: dotted 1px aqua;
-    // > * {
-    //   border: dashed 2px red;
-    // }
-  
-    > header {
-      grid-area: heading;
-      grid-column: 2 / 4;
-      // margin-bottom: 1rem;
-      padding-inline: 1rem;
-    }
-  
-    > main {
-      grid-area: main;
-      grid-column: 2 / 4;
-    }
-  
-  }
+  // // todo how to select any sibling selector?
+  // &.header_main_aside, &.header_main {
+  //   display: grid;
+  //   gap: 1rem;
+  //   // leaves those lovely lil inline gaps on mobile, but expands fully on desktop
+  //   grid-template-columns: minmax(0,1fr) minmax(0,var(--w-sitemax)) minmax(0,1fr);
+  //   // background: green;
+  // }
 
   @media (width > 830px) {
+
+    &.header_main {
+  
+      grid-template-areas: 
+        "heading heading heading heading"
+        "main    main    main    main"
+      ;
+      grid-template-columns: 
+        minmax(0, 1fr) 
+        minmax(0, calc(var(--w-sitemax))) 
+        minmax(0, 1fr);
+      align-content: flex-start;
+  
+  
+      // // debug
+      // border: dotted 1px aqua;
+      // > * {
+      //   border: dashed 2px red;
+      // }
+    
+      > header {
+        grid-area: heading;
+        grid-column: 2 / 4;
+        // margin-bottom: 1rem;
+        padding-inline: 1rem;
+      }
+    
+      > main {
+        grid-area: main;
+        grid-column: 2 / 4;
+      }
+    
+    }
 
     &.header_main_aside {
     

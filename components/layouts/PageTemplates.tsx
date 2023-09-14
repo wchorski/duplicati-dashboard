@@ -74,7 +74,6 @@ export function PageTMain ({ main }:PageTMain) {
     <div className={[
       `page-wrapper`, 
       styles['page'],
-      styles['header_main'],
       styles.header_main,
     ].join(' ')} >
 
