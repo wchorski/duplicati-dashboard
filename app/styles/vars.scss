@@ -4,8 +4,9 @@
   --c-secondary: rgb(185, 209, 185);
   --c-primary: rgb(52, 95, 223);
   --c-accent: rgb(136, 220, 136);
-  --max-width: 1100px;
+  // todo how to use vars in media query "$--w-sitemax" in page.module.scss
   --w-sitemax: 100em;
+  // --w-sitemax: 1000px;
   --w-aside: 30em;
   --p-sitewrapper: 1rem;
   --p-sectionblock: 3rem;

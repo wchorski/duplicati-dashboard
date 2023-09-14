@@ -12,6 +12,7 @@ import Link from "next/link";
 import styles from '@styles/page.module.scss'
 import { BackupIdsList } from "@components/backups/BackupIdsList";
 import { List } from "@components/layouts/List";
+import { PageTHeaderMainAside } from "@components/layouts/PageTemplates";
 
 type Props = {
   params: {
@@ -39,40 +40,53 @@ export default async function BackupById({
 
   // console.log(JSON.stringify(uniqueFields, null, 2))
   
-  if(!dataById) return <p>no data found</p>
+  if(!dataById || !data) return <p>no data found</p>
+
 
   return (
-
-    <div className={[
-      `page-wrapper`, 
-      // `layout--main-aside`,
-      styles['page--header-main-aside'],
-    ].join(' ')} >
-
-      <header>
-        <h1> ID: {dataById.duplicati_id} </h1>
-        <FilterForm baseUrl={`/backups`}/>
-      </header>
-
-      <MainContainer>
-        <section>
-          <List isAnimated={true}>
-            {data?.map((entry:any) => (
-              <TableLogs entry={entry} uniqueFields={uniqueFields} key={entry.duplicati_id}/>
-            ))}
-            <li></li>
-          </List>
-        </section>
-      </MainContainer>
-
-      <AsideBar>
-        <Card>
-          <h2> Quick Nav </h2>
-          <BackupIdsList />
-        </Card>
-      </AsideBar>
-    </div>
+    <PageTHeaderMainAside 
+      header={Header(dataById.duplicati_id)}
+      main={Main({data, uniqueFields})}
+      aside={Aside()}
+    />
   )
+}
+
+//? Content
+function Header(id:string){
+
+  return <>
+    <h1> Backup Logs </h1>
+    <FilterForm baseUrl={`/backups/${id}`}/>
+  </>
+}
+
+
+type DupData = {
+  duplicati_id:string,
+  times:any[],
+}
+
+function Main({data, uniqueFields}:{data:DupData[], uniqueFields:string[]}){
+
+  return <>
+    <section>
+      <List isAnimated={true}>
+        {data?.map((entry:any, i:number) => (
+          <TableLogs entry={entry} uniqueFields={uniqueFields} key={i}/>
+        ))}
+      </List>
+    </section>
+  </>
+}
+
+function Aside(){
+  return <>
+    <Card>
+      <h2> Quick Nav </h2>
+      <BackupIdsList />
+    </Card>
+  </>
 }
 
 

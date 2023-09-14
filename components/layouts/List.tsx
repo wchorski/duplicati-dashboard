@@ -6,7 +6,7 @@ type Props = {
   delay?:number;
   duration?:number,
   isAnimated?:boolean,
-  children:ReactNode[]
+  children:ReactNode[]|ReactNode
 }
 
 export function List ({ isAnimated = false, delay = 0.2,  duration = 0.2, children }:Props) {
@@ -18,7 +18,7 @@ export function List ({ isAnimated = false, delay = 0.2,  duration = 0.2, childr
 
   return (
     <ul className={stylesArr.join(' ')}>
-      {children.map((child, i) => (
+      {Array.isArray(children) ? children.map((child, i) => (
         <li
           key={i}
           style={{
@@ -28,7 +28,16 @@ export function List ({ isAnimated = false, delay = 0.2,  duration = 0.2, childr
         >
           {child}
         </li>
-      ))}
+      )) : (
+        <li
+          style={{
+            animationDuration: duration + 's',
+            animationDelay: 0.1 * delay + 's'
+          }}
+        >
+          {children}
+        </li>
+      )}
     </ul>
   )
 }

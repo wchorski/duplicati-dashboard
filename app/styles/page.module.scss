@@ -1,7 +1,14 @@
+$--w-sitemax: 100em;
+
 .page {
 
-  &--header-main {
+  &.header_main_aside, &.header_main {
     display: grid;
+    gap: 1rem;
+    // background: green;
+  }
+
+  &.header_main {
   
     grid-template-areas: 
       "heading heading heading heading"
@@ -12,7 +19,7 @@
       minmax(0, calc(var(--w-sitemax))) 
       minmax(0, 1fr);
     align-content: flex-start;
-    gap: 1rem;
+
 
     // // debug
     // border: dotted 1px aqua;
@@ -34,44 +41,57 @@
   
   }
 
-  &--header-main-aside {
-    // background-color: tomato;
-    display: grid;
-  
-    grid-template-areas: 
-      "heading heading heading heading"
-      "main    main    aside   aside"
-    ;
-    grid-template-columns: 
-      minmax(0, 1fr) 
-      minmax(0, calc(var(--w-sitemax) / 2 + var(--w-aside))) 
-      minmax(0, calc(var(--w-sitemax) /2 - var(--w-aside))) 
-      minmax(0, 1fr);
-    align-content: flex-start;
-    gap: 1rem;
+  @media (width > 830px) {
 
-    // // debug
-    // border: dotted 1px aqua;
-    // > * {
-    //   border: dashed 2px red;
-    // }
-  
-    > header {
-      grid-area: heading;
-      grid-column: 2 / 4;
-      // margin-bottom: 1rem;
-      padding-inline: 1rem;
-    }
-  
-    > main {
-      grid-area: main;
-      grid-column: 2 / 3;
-    }
-  
-    > aside {
-      grid-area: aside;
-      grid-column: 3 / 4;
+    &.header_main_aside {
     
+      grid-template-areas: 
+        "heading heading heading heading"
+        "main    main    aside   aside"
+      ;
+      grid-template-columns: 
+        minmax(0, 1fr) 
+        minmax(0, calc(var(--w-sitemax) / 2 + var(--w-aside))) 
+        minmax(0, calc(var(--w-sitemax) /2 - var(--w-aside))) 
+        minmax(0, 1fr);
+      align-content: flex-start;
+
+      // // debug
+      // border: dotted 1px aqua;
+      // > * {
+      //   border: dashed 2px red;
+      // }
+    
+      > header {
+        grid-area: heading;
+        grid-column: 2 / 4;
+        // margin-bottom: 1rem;
+        // padding-inline: 1rem;
+      }
+    
+      > main {
+        grid-area: main;
+        grid-column: 2 / 3;
+      }
+    
+      > aside {
+        grid-area: aside;
+        grid-column: 3 / 4;
+      
+      }
     }
   }
 }
+ 
+// @media (max-width: $--w-sitemax) {
+//   /* Styles for screens smaller than the small breakpoint */
+
+//   //? adds touch of padding when window is smaller than site max width
+//   .page {
+//     >* {
+//       > header {
+//         padding-inline: 1rem;
+//       }
+//     }
+//   }
+// }

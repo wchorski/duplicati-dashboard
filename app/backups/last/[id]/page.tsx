@@ -11,6 +11,7 @@ import { List } from "@components/layouts/List";
 import { AsideBar } from "@components/layouts/AsideBar";
 import { Card } from "@components/layouts/Card";
 import { BackupIdsList } from "@components/backups/BackupIdsList";
+import { PageTHeaderMainAside } from "@components/layouts/PageTemplates";
 
 type Props = {
   params: {
@@ -35,54 +36,66 @@ export default async function BackupById({
 
   const uniqueKeys = Object.keys(data);
 
-  return (<>
 
-    <div className={[
-      `page-wrapper`, 
-      // `layout--main-aside`,
-      styles['page--header-main-aside'],
-    ].join(' ')} >
+  return (
+    <PageTHeaderMainAside 
+      header={Header(params.id)}
+      main={Main(uniqueKeys, data)}
+      aside={Aside()}
+    />
+  )
+}
 
-      <header>
-        <h1> Last: {params.id}</h1>
-        <FilterForm baseUrl={`/backups/last`}/>
-      </header>
+//? Content
+function Header(id:string){
 
-      <MainContainer>
-        <section>
-          <List isAnimated={true}>
-            <table className={stylesTable.rwdTable} >
-        
-              <thead>
-                <tr>
-                  {uniqueKeys.map((field:string) => (
-                    <th key={field}> {labelPretty(field)} </th>
-                  ))}
-                </tr>
-              </thead>
+  return <>
+    <h1> Last: {id}</h1>
+    <FilterForm baseUrl={`/backups/last/${id}`}/>
+  </>
+}
 
-              <tbody>
-                <tr>
-                  {uniqueKeys.map((key, i) => (
-                    <td key={i} data-th={labelPretty(key)}>{data[key]}</td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-            <li></li>
-          </List>
-        </section>
-      </MainContainer>
 
-      <AsideBar>
-        <Card>
-          <h2> Quick Nav </h2>
-          <BackupIdsList />
-        </Card>
-      </AsideBar>
-    </div>
+type DupData = {
+  duplicati_id:string,
+  times:any[],
+}
+
+function Main(uniqueKeys:string[], data:any){
+
+  return <>
+    <section>
+      <List isAnimated={true}>
+        <table className={stylesTable.rwdTable} >
     
-  </>)
+          <thead>
+            <tr>
+              {uniqueKeys.map((field:string) => (
+                <th key={field}> {labelPretty(field)} </th>
+              ))}
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              {uniqueKeys.map((key, i) => (
+                <td key={i} data-th={labelPretty(key)}>{data[key]}</td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </List>
+    </section>
+  </>
+}
+
+function Aside(){
+  return <>
+    <Card>
+      <h2> Quick Nav </h2>
+      <BackupIdsList />
+    </Card>
+  </>
 }
 
 

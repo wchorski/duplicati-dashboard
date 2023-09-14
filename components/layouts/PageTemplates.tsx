@@ -4,7 +4,7 @@ import styles from '@styles/page.module.scss'
 import { AsideBar } from './AsideBar'
   
 type PageTHeaderMainAside = {
-  // template:'header-main-aside'|'fullwidth',
+  // template:'header_main_aside'|'fullwidth',
   header:ReactNode,
   main:ReactNode,
   aside:ReactNode,
@@ -16,8 +16,10 @@ export function PageTHeaderMainAside ({ header, main, aside }:PageTHeaderMainAsi
   return (
     <div className={[
       `page-wrapper`, 
-      styles['page--header-main-aside'],
+      styles['page'],
+      styles['header_main_aside'],
     ].join(' ')} >
+
 
       <header>
         {header}
@@ -36,7 +38,7 @@ export function PageTHeaderMainAside ({ header, main, aside }:PageTHeaderMainAsi
 
 
 type PageTHeaderMain = {
-  // template:'header-main-aside'|'HeaderMain',
+  // template:'header_main_aside'|'HeaderMain',
   header:ReactNode,
   main:ReactNode,
 }
@@ -46,7 +48,8 @@ export function PageTHeaderMain ({ header, main }:PageTHeaderMain) {
   return (
     <div className={[
       `page-wrapper`, 
-      styles['page--header-main'],
+      styles['page'],
+      styles['header_main'],
     ].join(' ')} >
 
       <header>
@@ -70,7 +73,9 @@ export function PageTMain ({ main }:PageTMain) {
   return (
     <div className={[
       `page-wrapper`, 
-      styles['page--header-main'],
+      styles['page'],
+      styles['header_main'],
+      styles.header_main,
     ].join(' ')} >
 
       <MainContainer>

@@ -13,7 +13,7 @@ export default function Home() {
           className={styles.center}
         >
           <Image src={`/assets/logo.png`} width={200} height={200} alt='site logo'/>
-          <h2 className='siteTitle'> Duplicati-Dashboard </h2>
+          <h1 className='siteTitle'> Duplicati-Dashboard </h1>
           <p> Monitor and query all your duplicati clients in one location </p>
         </div>
       </Section>

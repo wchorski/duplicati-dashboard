@@ -1,6 +1,7 @@
 .form{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
   background-color: var(--c-secondary);
   padding: .3rem;
