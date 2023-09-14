@@ -19,7 +19,6 @@ import { LoadingAnim } from "@components/LoadingAnim"
 
 type Props = {
   searchParams:QuerySearchParams,
-  children:ReactNode,
 }
 
 export default async function BackupsPage ({
