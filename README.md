@@ -21,7 +21,7 @@ you can either add these settings for the globally or per backup in the *Advance
 
 Here is a breakdown of what endpoints and search parameters that can be passed through.
 
-### Query Single Backup Stats
+### URL Breakdown
 
 http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 
@@ -44,6 +44,16 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 
 > [!note] make sure relative dates have a negative i.e. `-5h` as your are looking back in time. Positive time values will cause errors
 
+### Examples
+| query                                         | url                                                            |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| all backup stats in database                  | `http://APPDOMAIN/backups`                                     |
+| single backup stats                           | `http://APPDOMAIN/backups/BACKUP_ID`                           |
+| last recorded backup stat                     | `http://APPDOMAIN/backups/last/BACKUP_ID`                      |
+| same as above                                 | `http://APPDOMAIN/backups/BACKUP_ID?first=true`                |
+| last recorded backup stat in the last 5 hours | `http://APPDOMAIN/backups/last/BACKUP_ID?start=-5h&first=true` |
+
+
 ## ⚙️ Development
 1. `git clone https://github.com/wchorski/duplicati-dashboard.git && cd duplicati-dashboard`
 2. `cp .env.template .env.local`
@@ -59,14 +69,31 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 3. `docker compose up -d`
 
 ## Home Assistant
-- todo
+```yaml
+rest: 
+- authentication: basic
+  username: "admin"
+  password: "password"
+  scan_interval: 86400
+  resource: http://APPDOMAIN.lan/api/backups/last/DUPLICATI_ID
+  sensor:
+    - name: "duplicati-DUPLICATI_ID-status"
+      value_template: "{{ value_json.status }}"
+    - name: "duplicati-DUPLICATI_ID-time"
+      value_template: >
+        {% set thistime = value_json.time %}
+        {{ as_timestamp(thistime) | timestamp_custom("%Y %M, %d %H:%M") }}
+```
 
 
 #Todo
 - [x] create dynamic nav based on unique `duplicati_id`s from database
 - [ ] add FAQ as a page inside the app
-- [ ] mobile friendly
+- [ ] mobile friendly (almost there)
 - [ ] graph trends in app
 - [ ] Home Assistant Template sensor
 - [ ] Don't be lazy and figure out Types in TableClient.tsx component
 - [ ] get real data for screenshots
+- [ ] why is bg tile image weird when scrolling on mobile?
+- [ ] human readable bytes formatter (gb tb)
+- [ ] human readable duration formatter
