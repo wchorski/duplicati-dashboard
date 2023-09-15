@@ -50,8 +50,8 @@ http://APPDOMAIN/backups/BACKUP_ID?start=-5h&first=true
 | all backup stats in database                  | `http://APPDOMAIN/backups`                                     |
 | single backup stats                           | `http://APPDOMAIN/backups/BACKUP_ID`                           |
 | last recorded backup stat                     | `http://APPDOMAIN/backups/last/BACKUP_ID`                      |
-| same as above                                 | `http://APPDOMAIN/backups/BACKUP_ID?first=true`                |
-| last recorded backup stat in the last 5 hours | `http://APPDOMAIN/backups/last/BACKUP_ID?start=-5h&first=true` |
+| same as above                                 | `http://APPDOMAIN/backups/BACKUP_ID?last=true`                |
+| last recorded backup stat in the last 5 hours | `http://APPDOMAIN/backups/last/BACKUP_ID?start=-5h` |
 
 
 ## ⚙️ Development
