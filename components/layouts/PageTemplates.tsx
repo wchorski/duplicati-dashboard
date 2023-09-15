@@ -69,18 +69,9 @@ type PageTMain = {
 }
 export function PageTMain ({ main }:PageTMain) {
 
-
   return (
-    <div className={[
-      `page-wrapper`, 
-      styles['page'],
-      styles.header_main,
-    ].join(' ')} >
-
-      <MainContainer>
-        {main}
-      </MainContainer>
-
-    </div>
+    <MainContainer>
+      {main}
+    </MainContainer>
   )
 }

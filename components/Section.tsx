@@ -22,7 +22,7 @@ export function Section({
   if(col) return (
     <section 
       className={styleArr.join(' ')} 
-      // style={{backgroundColor: bgColor, background: `url(${bgImg})`}}
+      style={{backgroundColor: bgColor, background: `url(${bgImg})`}}
     >
       <div className={styles[`col-${col}`]}>
         {children}

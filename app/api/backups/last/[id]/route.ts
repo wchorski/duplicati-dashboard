@@ -16,21 +16,15 @@ export async function GET(request: NextRequest, context:Context) {
   const { searchParams, pathname } = request.nextUrl
   // console.log(`==== GET LAST Backup by Id: ${id} ====`);
 
-  // todo figure out how to type .get() functions
-  // @ts-ignore
   const start = searchParams.get('start') === 'undefined' ||
-                // @ts-ignore
                 searchParams.get('start') === null
                   ? '-40d' 
-                // @ts-ignore
                   : searchParams.get('start')
-  // @ts-ignore
-  const stop = searchParams.get('stop') === 'undefined' ||
-              // @ts-ignore
-              searchParams.get('stop') === null
-              ? 'now()' 
-              // @ts-ignore
-              : searchParams.get('stop')
+
+  const stop =  searchParams.get('stop') === 'undefined' ||
+                searchParams.get('stop') === null
+                ? 'now()' 
+                : searchParams.get('stop')
 
 
   let fluxQuery = `
@@ -60,7 +54,6 @@ export async function GET(request: NextRequest, context:Context) {
     // console.log(result);
     const lastPoint = formatOnePoint(result)
   
-    
     return NextResponse.json(lastPoint)
     
   } catch (error:any) {

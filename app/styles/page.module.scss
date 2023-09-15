@@ -23,6 +23,17 @@ $--w-sitemax: 100em;
 
   @media (width > 830px) {
 
+    &.main {
+      grid-template-areas: 
+        "main    main    main    main"
+      ;
+      grid-template-columns: 
+        minmax(0, 1fr) 
+        minmax(0, calc(var(--w-sitemax))) 
+        minmax(0, 1fr);
+      align-content: flex-start;
+    }
+
     &.header_main {
   
       grid-template-areas: 

@@ -8,8 +8,6 @@ const jsonFilePath =  + '/logs/data.json';
  
 export async function GET(request: NextRequest, ) {
   
-  // console.log('==== GET All Backups ====');
-  // const { id } = context.params
   const { searchParams, pathname } = request.nextUrl
 
   // todo figure out how to type .get() functions
@@ -57,7 +55,7 @@ export async function GET(request: NextRequest, ) {
 export async function POST(request: Request) {
   const res:Duplicati = await request.json()
   // console.log(res);
-  console.log('======== ' + res.Extra['backup-name'] + ' ===========');
+  console.log('======== POST' + res.Extra['backup-name'] + ' ===========');
   
   const name = res.Extra['backup-name']
   const data = res.Data
